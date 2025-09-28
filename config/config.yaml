@@ -1,0 +1,8 @@
+artifacts_root: src/artifacts
+
+data_ingestion:
+  root_dir: src/artifacts/data_ingestion
+  source_URL: https://github.com/nisha132/Datasets/raw/refs/heads/main/Chicken-fecal-images.zip
+  local_data_file: src/artifacts/data_ingestion/data.zip
+  unzip_dir: src/artifacts/data_ingestion
+
