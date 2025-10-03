@@ -1,0 +1,29 @@
+cmd: python src/CNNClassifier/pipeline/stage_04_evaluation.py
+deps:
+- path: artifacts/data_ingestion/Chicken-fecal-images
+  md5: 9e1f8dd2eae3c29e9d635df89d438ae4.dir
+  size: 12207807
+  nfiles: 390
+- path: artifacts/training/model.h5
+  hash: md5
+  md5: 20f50e380eb1815023c57053774fda84
+  size: 59551240
+- path: config/config.yaml
+  md5: 3f6dc733e0735665409e293214355568
+  size: 818
+- path: src/CNNClassifier/pipeline/stage_04_evaluation.py
+  hash: md5
+  md5: 1eb9c5b5e69805a7aa3cd17f306e08c6
+  size: 895
+params:
+  params.yaml:
+    BATCH_SIZE: 16
+    IMAGE_SIZE:
+    - 224
+    - 224
+    - 3
+outs:
+- path: scores.json
+  hash: md5
+  md5: b7641d178f3faf49fe9767aeebc8ef7f
+  size: 72

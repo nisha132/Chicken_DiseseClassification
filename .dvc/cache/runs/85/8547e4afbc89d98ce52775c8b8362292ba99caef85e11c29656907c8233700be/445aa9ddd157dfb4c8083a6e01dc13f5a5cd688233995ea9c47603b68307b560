@@ -1,0 +1,14 @@
+cmd: python src/CNNClassifier/pipeline/stage_01_data_ingestion.py
+deps:
+- path: config/config.yaml
+  md5: 3f6dc733e0735665409e293214355568
+  size: 818
+- path: src/CNNClassifier/pipeline/stage_01_data_ingestion.py
+  hash: md5
+  md5: 20fea4cab1f0c369a89142fa99fe2374
+  size: 926
+outs:
+- path: artifacts/data_ingestion/Chicken-fecal-images
+  md5: 9e1f8dd2eae3c29e9d635df89d438ae4.dir
+  size: 12207807
+  nfiles: 390
