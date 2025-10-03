@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.8-slim-bookworm
 
 # Install system dependencies and AWS CLI
 RUN apt-get update -y && \
