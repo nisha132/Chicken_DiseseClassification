@@ -1,158 +1,116 @@
-# Chicken-Disease-Classification--Project
+Chicken Disease Classification Project
+Workflows
 
+Update config.yaml
 
-## Workflows
+Update secrets.yaml [Optional]
 
-1. Update config.yaml
-2. Update secrets.yaml [Optional]
-3. Update params.yaml
-4. Update the entity
-5. Update the configuration manager in src config
-6. Update the components
-7. Update the pipeline 
-8. Update the main.py
-9. Update the dvc.yaml
+Update params.yaml
 
+Update the entity
 
-# How to run?
-### STEPS:
+Update the configuration manager in src/config
+
+Update the components
+
+Update the pipeline
+
+Update main.py
+
+Update the dvc.yaml
+
+How to run?
+Steps
 
 Clone the repository
 
-```bash
-https://github.com/entbappy/Chicken-Disease-Classification--Project
-```
-### STEP 01- Create a conda environment after opening the repository
+git clone https://github.com/nisha132/Chicken_DiseseClassification.git
+cd Chicken_DiseseClassification
 
-```bash
+
+STEP 01 - Create a conda environment after opening the repository
+
 conda create -n cnncls python=3.8 -y
-```
-
-```bash
 conda activate cnncls
-```
 
 
-### STEP 02- install the requirements
-```bash
+STEP 02 - Install the requirements
+
 pip install -r requirements.txt
-```
 
 
-```bash
-# Finally run the following command
+STEP 03 - Run the application
+
 python app.py
-```
-
-Now,
-```bash
-open up you local host and port
-```
 
 
-### DVC cmd
+Now open up your local host and port in the browser.
 
-1. dvc init
-2. dvc repro
-3. dvc dag
+DVC Commands
 
+dvc init
 
+dvc repro
 
-# AWS-CICD-Deployment-with-Github-Actions
+dvc dag
 
-## 1. Login to AWS console.
+AWS CI/CD Deployment with GitHub Actions
+1. Login to AWS console.
+2. Create IAM user for deployment
 
-## 2. Create IAM user for deployment
+With specific access:
 
-	#with specific access
+EC2 access: Virtual machine
 
-	1. EC2 access : It is virtual machine
+ECR access: Elastic Container Registry (to store docker images)
 
-	2. ECR: Elastic Container registry to save your docker image in aws
+Description of deployment:
 
+Build docker image of the source code
 
-	#Description: About the deployment
+Push docker image to ECR
 
-	1. Build docker image of the source code
+Launch EC2
 
-	2. Push your docker image to ECR
+Pull docker image from ECR in EC2
 
-	3. Launch Your EC2 
+Run docker container in EC2
 
-	4. Pull Your image from ECR in EC2
+Policies required:
 
-	5. Lauch your docker image in EC2
+AmazonEC2ContainerRegistryFullAccess
 
-	#Policy:
+AmazonEC2FullAccess
 
-	1. AmazonEC2ContainerRegistryFullAccess
+3. Create ECR repo to store/save docker image
 
-	2. AmazonEC2FullAccess
+👉 Save the repository URI for later use. Example:
 
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: REMOVED.dkr.ecr.us-east-1.amazonaws.com/chicken
+<aws-account-id>.dkr.ecr.<region>.amazonaws.com/chicken
 
-	
-## 4. Create EC2 machine (Ubuntu) 
+4. Create EC2 machine (Ubuntu)
+5. Install Docker in EC2
+sudo apt-get update -y
+sudo apt-get upgrade -y
 
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
+# install docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 
-	sudo apt-get update -y
+sudo usermod -aG docker ubuntu
+newgrp docker
 
-	sudo apt-get upgrade
-	
-	#required
+6. Configure EC2 as self-hosted runner
 
-	curl -fsSL https://get.docker.com -o get-docker.sh
+Navigate to:
+GitHub repo → Settings → Actions → Runners → New self-hosted runner → choose OS → follow setup commands
 
-	sudo sh get-docker.sh
+7. Setup GitHub secrets
 
-	sudo usermod -aG docker ubuntu
+Configure the following in your repo → Settings → Secrets and variables → Actions:
 
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-    AWS_ACCESS_KEY_ID=
-
-    AWS_SECRET_ACCESS_KEY=
-
-    AWS_REGION = us-east-1
-
-    AWS_ECR_LOGIN_URI = demo>>  REMOVED.dkr.ecr.ap-south-1.amazonaws.com
-
-    ECR_REPOSITORY_NAME = simple-app
-
-
-
-
-# AZURE-CICD-Deployment-with-Github-Actions
-
-## Save pass:
-
-REMOVED
-
-
-## Run from terminal:
-
-docker build -t chickenapp.azurecr.io/chicken:latest .
-
-docker login chickenapp.azurecr.io
-
-docker push chickenapp.azurecr.io/chicken:latest
-
-
-## Deployment Steps:
-
-1. Build the Docker image of the Source Code
-2. Push the Docker image to Container Registry
-3. Launch the Web App Server in Azure 
-4. Pull the Docker image from the container registry to Web App server and run 
+AWS_ACCESS_KEY_ID = <your-aws-access-key>
+AWS_SECRET_ACCESS_KEY = <your-aws-secret-key>
+AWS_REGION = <your-region>
+AWS_ECR_LOGIN_URI = <aws-account-id>.dkr.ecr.<region>.amazonaws.com
+ECR_REPOSITORY_NAME = <your-repository-name>
