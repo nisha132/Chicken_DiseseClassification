@@ -1,9 +1,21 @@
 FROM python:3.8-slim-buster
 
-RUN apt update -y && apt install awscli -y
+# Install system dependencies and AWS CLI
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends \
+        awscli \
+        curl \
+        unzip \
+        git && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-COPY . /app
-RUN pip install -r requirements.txt
+# Copy project files
+COPY . .
 
-CMD ["python3", "app.py"]
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Default command
+CMD ["python", "app.py"]
