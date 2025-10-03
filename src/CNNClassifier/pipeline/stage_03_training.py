@@ -2,7 +2,7 @@ from src.CNNClassifier.config.configuration import ConfigurationManager
 from src.CNNClassifier.components.prepare_callbacks import PrepareCallback
 from src.CNNClassifier.components.training import Training
 from src.CNNClassifier import logger
-
+import tensorflow as tf
 
 
 STAGE_NAME = "Training"
@@ -17,7 +17,7 @@ class ModelTrainingPipeline:
         prepare_callbacks_config = config.get_prepare_callback_config()
         prepare_callbacks = PrepareCallback(config=prepare_callbacks_config)
         callback_list = prepare_callbacks.get_tb_ckpt_callbacks()
-
+        tf.config.run_functions_eagerly(True)
 
         training_config = config.get_training_config()
         training = Training(config=training_config)
